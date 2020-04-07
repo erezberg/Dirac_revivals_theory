@@ -6,7 +6,7 @@ clear param;
 
 param.nf = 4;             % number of flavors
 param.W  = 1;             % bandwidth
-param.U  = 0.85;          % interaction strength
+param.U  = 1;          % interaction strength
 param.N =   2000;
 param.E0 = 0.7;           % DOS parameters 
 param.Evh = 0.7;
@@ -118,8 +118,8 @@ subplot(2,2,3);
 plot(n_tot,mu,'linewidth',1); 
 prettyfig; xlabel('$$n$$'); ylabel('$$\mu$$');
 subplot(2,2,4);
-%plot(n_tot(2:end), diff(mu)./diff(n_tot),'linewidth',1)
-plot(n_tot, 1./dndm,'linewidth',1)
+[n_flat, dmdn_flat] = flatten_dmdn(n_tot, mu, dndm);   % Corrected dmdn for first order transitions
+plot(n_flat, dmdn_flat,'linewidth',1)
 prettyfig; xlabel('$$n$$'); ylabel('$$d \mu/dn$$');
 axis([0 4 0 3])
 
